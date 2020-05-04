@@ -1,2 +1,2 @@
-# TEST
-ovo je test
+#Bežične senzorske mreže
+Labaratorijske vježbe
