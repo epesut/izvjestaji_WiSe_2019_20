@@ -1,2 +1,2 @@
-#Bežične senzorske mreže
+Bežične senzorske mreže
 Labaratorijske vježbe
