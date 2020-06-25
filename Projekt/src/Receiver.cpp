@@ -6,6 +6,7 @@
 #define CE_PIN 9
 #define CSN_PIN 10
 
+int brojac = 0;
 const byte address[][6] = {"1node", "2node", "3node", "4node", "5node", "6node"};
 
 RF24 radio(CE_PIN, CSN_PIN);
@@ -52,8 +53,6 @@ void getData()
   uint8_t pipeNum;
   if (radio.available(&pipeNum))
   {
-    Serial.print(F("Got data on pipe: "));
-    Serial.println(pipeNum);
     radio.read(&dataReceived, sizeof(dataReceived));
     newData = true;
   }
@@ -63,9 +62,10 @@ void showData()
 {
   if (newData == true)
   {
-    Serial.println("Received data");
-    Serial.print("INFO: ");
-    Serial.println(dataReceived.info);
+    brojac++;
+    Serial.print("B: ");
+    Serial.print(brojac);
+    Serial.print("!");
 
     newData = false;
   }

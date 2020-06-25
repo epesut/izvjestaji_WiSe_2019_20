@@ -22,8 +22,9 @@ SensorData dataToSend;
 
 unsigned long currentMillis;
 unsigned long prevMillis;
-unsigned long txIntervalMillis = 1000;
+unsigned long txIntervalMillis = 50;
 int ldistance = 65;
+int counter = 0;
 
 void send();
 long read();
@@ -56,29 +57,30 @@ void loop()
 void send()
 {
 
-    bool rslt;
     long distance = read();
     if (ldistance - distance > 10)
     {
         dataToSend.info = true;
-        rslt = radio.write(&dataToSend, sizeof(dataToSend));
         // Always use sizeof() as it gives the size as the number of bytes.
         // For example if dataToSend was an int sizeof() would correctly return 2
+        delay(50);
+        while (!(radio.write(&dataToSend, sizeof(dataToSend))))
+        {
+            counter++;
+            Serial.println("TXfailed");
+        }
+        Serial.print("\n BROJAC :");
+        Serial.print(counter);
+        Serial.print("\n");
+        counter = 0;
     }
+    //Serial.println(ldistance);
+    //Serial.println(distance);
     ldistance = distance;
-    Serial.print("Data Sent ");
-    Serial.print(dataToSend.info);
+    //Serial.print("Data Sent ");
+    //Serial.print(dataToSend.info);
     Serial.print(" ");
     dataToSend.info = false;
-
-    if (rslt)
-    {
-        Serial.println("  Acknowledge received");
-    }
-    else
-    {
-        Serial.println("  Tx failed");
-    }
 }
 
 long read()
