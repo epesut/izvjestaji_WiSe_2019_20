@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 
 BROKER = "mqtt.eclipse.org"
 CLIENTID = "MQTTExample"
-TOPIC_ONE = "A507/sensors"
+TOPIC_ONE = "CarCounter/sensor1"
 COMPORT = "COM11"  # please replace this with your port number
 QOS = 1
 

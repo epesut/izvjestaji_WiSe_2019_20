@@ -1,4 +1,3 @@
-/*
 #include <Arduino.h>
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -58,7 +57,7 @@ void send()
 {
 
     long distance = read();
-    if (ldistance - distance > 10)
+    if (ldistance - distance > 50)
     {
         dataToSend.info = true;
         // Always use sizeof() as it gives the size as the number of bytes.
@@ -96,4 +95,3 @@ long read()
     delay(50);
     return distance;
 }
-*/
