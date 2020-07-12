@@ -61,24 +61,14 @@ void send()
     {
         dataToSend.info = true;
         // Always use sizeof() as it gives the size as the number of bytes.
-        // For example if dataToSend was an int sizeof() would correctly return 2
         delay(50);
         while (!(radio.write(&dataToSend, sizeof(dataToSend))))
         {
             counter++;
             Serial.println("TXfailed");
         }
-        Serial.print("\n BROJAC :");
-        Serial.print(counter);
-        Serial.print("\n");
-        counter = 0;
     }
-    //Serial.println(ldistance);
-    //Serial.println(distance);
     ldistance = distance;
-    //Serial.print("Data Sent ");
-    //Serial.print(dataToSend.info);
-    Serial.print(" ");
     dataToSend.info = false;
 }
 
